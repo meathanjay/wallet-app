@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        $users = \App\Models\User::where('id', '!=', Auth::id())
+        $users = User::where('id', '!=', Auth::id())
             ->select('id', 'name', 'email')
             ->orderBy('name')
             ->get();
@@ -43,7 +44,7 @@ class UserController extends Controller
             ]);
         }
 
-        $user = \App\Models\User::find($userId);
+        $user = User::find($userId);
 
         if (!$user) {
             return response()->json([
