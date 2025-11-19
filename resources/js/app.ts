@@ -5,8 +5,15 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { initializeTheme } from './composables/useAppearance';
+import { initializeEcho } from './composables/useEcho';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+declare global {
+    interface Window {
+        Pusher: typeof import('pusher-js');
+    }
+}
+
+const appName = import.meta.env.VITE_APP_NAME || 'Mini Wallet';
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
@@ -27,3 +34,8 @@ createInertiaApp({
 
 // This will set light / dark mode on page load...
 initializeTheme();
+
+// Initialize Laravel Echo for real-time updates (only if Pusher is configured)
+if (import.meta.env.VITE_PUSHER_APP_KEY) {
+    initializeEcho();
+}

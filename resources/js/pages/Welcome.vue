@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { dashboard, login, register } from '@/routes';
+import { wallet, login, register } from '@/routes';
 import { Head, Link } from '@inertiajs/vue3';
 
 withDefaults(
@@ -26,10 +26,10 @@ withDefaults(
             <nav class="flex items-center justify-end gap-4">
                 <Link
                     v-if="$page.props.auth.user"
-                    :href="dashboard()"
+                    :href="wallet()"
                     class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
                 >
-                    Dashboard
+                    Wallet
                 </Link>
                 <template v-else>
                     <Link
@@ -80,7 +80,7 @@ withDefaults(
                             <span>
                                 Read the
                                 <a
-                                    href="https://laravel.com/docs"
+                                    href="https://github.com/your-username/wallet-app/blob/main/README.md"
                                     target="_blank"
                                     class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
                                 >

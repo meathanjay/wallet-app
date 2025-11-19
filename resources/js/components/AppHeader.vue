@@ -31,10 +31,10 @@ import {
 import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import { toUrl, urlIsActive } from '@/lib/utils';
-import { dashboard } from '@/routes';
+import { contacts, transactions, wallet } from '@/routes';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { InertiaLinkProps, Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
+import { BookOpen, Folder, History, Menu, Search, Users, Wallet } from 'lucide-vue-next';
 import { computed } from 'vue';
 
 interface Props {
@@ -62,21 +62,31 @@ const activeItemStyles = computed(
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
+        title: 'Wallet',
+        href: wallet(),
+        icon: Wallet,
+    },
+    {
+        title: 'Transactions',
+        href: transactions(),
+        icon: History,
+    },
+    {
+        title: 'Contacts',
+        href: contacts(),
+        icon: Users,
     },
 ];
 
 const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
-        href: 'https://github.com/laravel/vue-starter-kit',
+        href: 'https://github.com/your-username/wallet-app',
         icon: Folder,
     },
     {
         title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
+        href: 'https://github.com/your-username/wallet-app/blob/main/README.md',
         icon: BookOpen,
     },
 ];
@@ -148,7 +158,7 @@ const rightNavItems: NavItem[] = [
                     </Sheet>
                 </div>
 
-                <Link :href="dashboard()" class="flex items-center gap-x-2">
+                <Link :href="wallet()" class="flex items-center gap-x-2">
                     <AppLogo />
                 </Link>
 
